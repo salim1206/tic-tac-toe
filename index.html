@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div id="left">
+
+
+    <div id="board">
+
+      <div id="0"></div>
+      <div id="1"></div>
+      <div id="2"></div>
+
+      <div id="3" class="box"></div>
+      <div id="4" class="box"></div>
+      <div id="5" class="box"></div>
+
+      <div id="6" class="box"></div>
+      <div id="7" class="box"></div>
+      <div id="8" class="box"></div>
+
+    </div>
+  </div>
+</body>
+<script>
+  const winningCombos = [
+    ["#0", "#1", "#2"],
+    ["#3", "#4", "#5"],
+    ["#6", "#7", "#8"],
+    ["#0", "#3", "#6"],
+    ["#1", "#4", "#7"],
+    ["#2", "#8", "#5"],
+    ["#6", "#4", "#2"],
+    ["#0", "#4", "#8"],
+  ]
+
+  let count = 1
+
+  $("#board").click(function (e) {
+
+    if (e.target.innerText === "") {
+      if (count % 2 == 1) {
+        e.target.innerHTML = "x"
+        count++
+      } else {
+        e.target.innerHTML = "o"
+        count++
+      }
+
+    }
+    if (count == 10) {
+      alert("game has finished")
+    }
+
+
+    winningCombos.forEach(function (combo) {
+      if ($(combo[0]).text() == $(combo[1]).text() && $(combo[1]).text() == $(combo[2]).text() && $(combo[0]).text() != '') {
+        console.log('win')
+        for (let i = 0; i < combo.length; i++) {
+          $(combo[i]).css("background-color", "green")
+        }
+
+      }
+
+      // if ((document.getElementById(combo[0]).innerText == document.getElementById(combo[1]).innerText) &&
+      //   document.getElementById(combo[1].innerText == document.getElementById(combo[2]).innerText)) {
+      //   console.log("win")
+      // }
+    })
+
+
+    // if (((p1.innerText === p2.innerText) && (p2.innerText === p3.innerText)) && p1.innerText != "") {
+    //   console.log("won")
+    // }
+  })
+  // function checkWin() {
+
+  // }
+  // checkwin()
+
+
+
+
+</script>
+
+</html>
